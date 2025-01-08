@@ -1,10 +1,10 @@
 from pymongo import MongoClient
 
 # Replace <username>, <password>, and <dbname> with your actual MongoDB credentials
-client = MongoClient('mongodb+srv://BDAD:<123456789_Atlasd>@cluster0.qqtw3.mongodb.net/')
+client = MongoClient('')
 
-db = client['<BDAD>']
-collection = db['test_collection']
+db = client
+collection = db['']
 
 # Insert a test document
 result = collection.insert_one({'name': 'Test Document'})
