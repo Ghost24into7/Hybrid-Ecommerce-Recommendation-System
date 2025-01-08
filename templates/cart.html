@@ -15,7 +15,11 @@
                 <ul>
                     <li><a href="{{ url_for('index') }}">Home</a></li>
                     <li><a href="{{ url_for('product_list') }}">Products</a></li>
-                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% if 'user_id' in session %}
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>
@@ -43,7 +47,8 @@
                             </td>
                             <td>${{ item.price }}</td>
                             <td>
-                                <input type="number" value="1" min="1" class="quantity-input" data-product-id="{{ item._id }}">
+                                <label for="quantity-{{ item._id }}" class="visually-hidden">Quantity:</label>
+                                <input id="quantity-{{ item._id }}" type="number" value="{{ item.quantity }}" min="1" class="quantity-input" data-product-id="{{ item._id }}">
                             </td>
                             <td>
                                 <button class="btn remove-btn" onclick="removeFromCart('{{ item._id }}')">Remove</button>
@@ -62,16 +67,15 @@
             {% endif %}
         </section>
 
-        <!-- Recommended Products Section -->
         <section class="recommendation">
-            <h2>Recommended Products</h2>
+            <h2>Recommended for You</h2>
             <div class="recommended-products">
                 {% for product in recommendations %}
                 <div class="product-card">
                     <img src="{{ product.image_url }}" alt="{{ product.product_name }}">
                     <h3>{{ product.product_name }}</h3>
                     <p>Price: ${{ product.price }}</p>
-                    <button class="btn" onclick="addToCart('{{ product._id }}')">Add to Cart</button>
+                    <a class="btn" href="{{ url_for('product_detail', product_id=product._id) }}">View Product</a>
                 </div>
                 {% endfor %}
             </div>
@@ -81,5 +85,24 @@
     <footer>
         <p>&copy; 2024 My E-Commerce Site</p>
     </footer>
+
+    <script>
+        function removeFromCart(productId) {
+            fetch("{{ url_for('remove_from_cart') }}", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ product_id: productId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert("Error removing product from cart.");
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
 </body>
 </html>

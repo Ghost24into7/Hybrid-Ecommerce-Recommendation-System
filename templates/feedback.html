@@ -1,0 +1,33 @@
+<!-- Feedback Page (feedback.html) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-content">
+      <h1>Feedback</h1>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/profile">Profile</a>
+        <a href="/wishlist">Wishlist</a>
+        <a href="/cart" class="cart-badge">Cart<span class="cart-count">3</span></a>
+        <a href="/logout">Logout</a>
+      </nav>
+    </div>
+  </header>
+  <main class="main-content fade-in">
+    <form action="/submit_feedback" method="POST" class="form-container">
+      <div class="form-group">
+        <label for="feedback" class="form-label">Your Feedback</label>
+        <textarea id="feedback" name="feedback" class="form-input" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit Feedback</button>
+    </form>
+  </main>
+</body>
+</html>

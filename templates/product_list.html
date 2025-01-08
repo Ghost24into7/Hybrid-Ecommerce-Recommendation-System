@@ -37,7 +37,8 @@
                     <h3>{{ product['product_name'] }}</h3>
                     <p>Price: ${{ product['price'] }}</p>
                     <a href="{{ url_for('product_detail', product_id=product['_id']) }}" class="btn">View Details</a>
-                    <button class="btn add-to-cart-btn" data-product-id="{{ product['_id'] }}">Add to Cart</button>
+                    <button class="btn" onclick="addToCart('{{ product._id }}')">Add to Cart</button>
+
                 </div>
                 {% else %}
                 <p>No products available at this time.</p>
@@ -49,5 +50,27 @@
     <footer>
         <p>&copy; 2024 My E-Commerce Site</p>
     </footer>
+
+    <script>
+        function addToCart(productId) {
+    fetch("{{ url_for('add_to_cart') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ product_id: productId }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Product added to cart!");
+        } else {
+            alert("Failed to add product to cart.");
+        }
+    })
+    .catch(error => console.error("Error:", error));
+}
+
+    </script>
 </body>
 </html>

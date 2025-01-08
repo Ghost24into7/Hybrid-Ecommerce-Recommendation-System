@@ -31,16 +31,33 @@
         <button class="btn" onclick="addToCart('{{ product._id }}')">Add to Cart</button>
     </section>
 
-    <!-- Related Products (Recommendations) -->
+    <!-- Feedback Section -->
+    <section class="feedback">
+        <h2>Rate this Product</h2>
+        <form method="POST" action="{{ url_for('rate_product', product_id=product._id) }}">
+            <label for="rating">Your Rating:</label>
+            <select id="rating" name="rating" required>
+                <option value="" disabled selected>Select a rating</option>
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+            </select>
+            <button type="submit" class="btn">Submit Rating</button>
+        </form>
+    </section>
+
+    <!-- Recommendations Section -->
     <section class="recommendation">
         <h2>Similar Products</h2>
         <div class="recommended-products">
-            {% for product in recommendations %}
+            {% for recommended in recommendations %}
                 <div class="product-card">
-                    <img src="{{ product.image_url }}" alt="{{ product.product_name }}">
-                    <h3>{{ product.product_name }}</h3>
-                    <p>Price: ${{ product.price }}</p>
-                    <a class="btn" href="{{ url_for('product_detail', product_id=product._id) }}">View Product</a>
+                    <img src="{{ recommended.image_url }}" alt="{{ recommended.product_name }}">
+                    <h3>{{ recommended.product_name }}</h3>
+                    <p>Price: ${{ recommended.price }}</p>
+                    <a class="btn" href="{{ url_for('product_detail', product_id=recommended._id) }}">View Product</a>
                 </div>
             {% endfor %}
         </div>
@@ -50,5 +67,25 @@
     <footer>
         <p>&copy; 2024 E-Commerce Website</p>
     </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function addToCart(productId) {
+            fetch('{{ url_for("add_to_cart") }}', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ product_id: productId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Product added to cart!');
+                } else {
+                    alert('Please log in to add products to your cart.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
 </body>
 </html>

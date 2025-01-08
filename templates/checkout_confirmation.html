@@ -1,0 +1,26 @@
+<!-- Checkout Confirmation Page (checkout_confirmation.html) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmation</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-content">
+      <h1>Order Confirmation</h1>
+    </div>
+  </header>
+  <main class="main-content fade-in">
+    <div class="card">
+      <h2>Thank you for your purchase, {{ user.name }}!</h2>
+      <p>Order ID: {{ order._id }}</p>
+      <p>Total: ${{ order.total_price }}</p>
+      <p>A confirmation email has been sent to {{ user.email }}.</p>
+      <a href="/order-history" class="btn btn-primary">View Order History</a>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!-- Edit Profile Page (edit_profile.html) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-content">
+      <h1>Edit Profile</h1>
+    </div>
+  </header>
+  <main class="main-content fade-in">
+    <div class="form-container">
+      <form action="/edit-profile" method="POST">
+        <div class="form-group">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" id="name" name="name" class="form-input" value="{{ user.name }}" required>
+        </div>
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" name="email" class="form-input" value="{{ user.email }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

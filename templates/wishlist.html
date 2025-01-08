@@ -1,0 +1,35 @@
+<!-- Wishlist Page (wishlist.html) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-content">
+      <h1>Wishlist</h1>
+    </div>
+  </header>
+  <main class="main-content fade-in">
+    <section class="product-grid">
+      {% for item in wishlist_items %}
+      <div class="product-card">
+        <img src="{{ item.image_url }}" alt="{{ item.name }}">
+        <div class="product-info">
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.description }}</p>
+          <p>$ {{ item.price }}</p>
+          <form action="/cart" method="POST">
+            <input type="hidden" name="product_id" value="{{ item._id }}">
+            <button type="submit" class="btn btn-primary">Add to Cart</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+  </main>
+</body>
+</html>

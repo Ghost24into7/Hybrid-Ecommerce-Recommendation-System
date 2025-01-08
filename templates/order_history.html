@@ -1,0 +1,29 @@
+<!-- Order History Page (order_history.html) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order History</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-content">
+      <h1>Order History</h1>
+    </div>
+  </header>
+  <main class="main-content fade-in">
+    <div class="order-list">
+      {% for order in orders %}
+      <div class="card">
+        <h3>Order ID: {{ order._id }}</h3>
+        <p>Status: {{ order.status }}</p>
+        <p>Total: ${{ order.total_price }}</p>
+        <p>Date: {{ order.order_date }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </main>
+</body>
+</html>
