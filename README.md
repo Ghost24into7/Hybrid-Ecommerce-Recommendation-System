@@ -2,8 +2,7 @@
 
 Welcome to the Hybrid Ecommerce Recommendation System repository! This project demonstrates a robust and scalable ecommerce platform powered by a hybrid recommendation system. The system integrates collaborative filtering, content-based filtering, and big data processing techniques to deliver personalized product recommendations to users.
 
-**Features
-**
+**Features**
 User-Friendly Interface: Developed using HTML, CSS, and JavaScript for an intuitive user experience.
 
 Personalized Recommendations: Combines collaborative and content-based filtering.
