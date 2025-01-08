@@ -14,6 +14,12 @@ Big Data Integration: Leverages big data tools to process large datasets and opt
 
 Secure: Implements modern security practices for handling user data.
 
+**Output ScreenShots**
+![image](https://github.com/user-attachments/assets/8f2d5253-119f-47ea-a5d2-8288669cf501)
+![image](https://github.com/user-attachments/assets/565d5002-c242-42ec-a5c3-bf5abafce039)
+![image](https://github.com/user-attachments/assets/dd055c0c-77c8-4224-aabb-ca1707263052)
+![image](https://github.com/user-attachments/assets/3ec6e50d-f05a-42ba-b86a-33872989b8ca)
+
 **Technologies Used
 **
 **Frontend
